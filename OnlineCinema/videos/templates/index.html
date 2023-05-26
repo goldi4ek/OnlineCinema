@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+    Online cinema
+{% endblock %}
+{% block header %}
+      <a style="text-decoration: none; color: #025464" href="{% url "main"%}"><h1>Online cinema</h1></a>{% endblock %}
+{% block content %}
+
+
+
+<div class="container" >
+  {% if video %}
+  <div class="video-grid" style="display: flex; flex-direction: row;  width: 100%; flex-wrap: wrap">
+    {% for vid in video %}
+    <div class="video-card" >
+        <div>
+            <div style="display: flex; flex-direction: column;  width: 303px; margin-right: 20px; justify-content: center; margin-bottom: 20px;
+            text-align: center; background: rgba(171,245,255,0.9); padding: 10px; border-radius: 15px; backdrop-filter: blur(2px);">
+                <a href="{% url "video_info" vid.id %}" style="text-decoration: none">
+                <img src="{{ vid.sequence.url }}" class="card-img-top" alt="{{ vid.title }}" style="width: 100%; border-radius: 5px; margin-bottom: 10px; height: 410px">
+                <h4 class="card-title" style="color: black; margin-bottom: 10px;">{{ vid.title }}</h4></a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p>No videos</p>
+  {% endif %}
+</div>
+{% endblock %}
